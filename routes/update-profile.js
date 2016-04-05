@@ -2,13 +2,14 @@
 
 var express = require("express");
 var router = express.Router();
-var UserCredentials = require("../lib/UserCredentials"),
-    UserProfile = require("../lib/UserProfile");
+var UserCredentials = require("../lib/UserCredentials");
+var UserProfile = require("../lib/UserProfile");
 
 /* GET update profile page */
+/*
 router.get("/register", function(req, res, next) {
-    res.render("update-profile");
-});
+    res.render("update-profile", { title: 'Toronto Tutor' });
+});*/
 
 router.post("/update", function(req, res) {
     var firstname = req.body.firstname;
@@ -29,6 +30,7 @@ router.post("/update", function(req, res) {
     newProfile.description = description;
     newProfile.specialty = specialty;
 
+    console.log(newProfile);
     // save the profile
     newProfile.save(function(err, savedProfile) {
         if (err) {

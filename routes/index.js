@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var UserCredentials = require("../lib/UserCredentials"),
-    UserProfile = require("../lib/UserProfile");
+var UserCredentials = require("../lib/UserCredentials");
+var UserProfile = require("../lib/UserProfile");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -60,7 +60,7 @@ router.post('/register', function(req, res){
             return res.status(500).send();
         } else {
             req.session.user = savedUser;
-            res.render("update-profile");
+            res.render("update-profile", { title: 'Toronto Tutor' });
             return res.status(200).send();
         }
     });
@@ -75,13 +75,23 @@ router.post("/update-profile", function(req, res) {
     var lastname = req.body.lastname;
     var specialty = req.body.specialty;  // TODO support multiple specialties
     var description = req.body.description;
+    var age = req.body.age;
+    var location = req.body.location;
+    var education = req.body.education;
+    var degree = req.body.degree;
 
     var newProfile = new UserProfile();
     newProfile.username = username;
     newProfile.firstname = firstname;
     newProfile.lastname = lastname;
-    newProfile.specialties.push(specialty);
+    newProfile.specialties = specialty;
     newProfile.description = description;
+    newProfile.age = age;
+    newProfile.location = location;
+    newProfile.education = education;
+    newProfile.degree = degree;
+    
+    console.log(newProfile);
 
     newProfile.save(function(err, savedProfile) {
         if (err) {

@@ -11,21 +11,22 @@ doctype html
 <body>
 <div id="name" align="center">
 <h2>Profile Information</h2><br><br>
-
-<input type="text" class="fname" placeholder="First Name" />
-<input type="text" class="lname" placeholder="Last Name"  /> 
+<form method="post" action="/update-profile">
+<input name="firstname" type="text" class="fname" placeholder="First Name" />
+<input name="lastname" type="text" class="lname" placeholder="Last Name"  /> 
 <br />
 
-<textarea placeholder="Describe yourself here" rows="10"></textarea> <br>
+<textarea name="description" placeholder="Describe yourself here" rows="15"></textarea> <br>
 <h3>Add List of Specialties (Eg. Coding, Math, French): </h3>
 <br>
-<input type="text"/><br>
-<input type="text" class="fname" placeholder="Age" />
-<input type="text" class="lname" placeholder="Location"  /> 
-<input type="text" class="fname" placeholder="Education" />
-<input type="text" class="lname" placeholder="Degree"  /> 
+<input name="specialty" type="text"/><br>
+<input name="age" type="text" class="fname" placeholder="Age" />
+<input name="location" type="text" class="lname" placeholder="Location"  /> 
+<input name="education" type="text" class="fname" placeholder="Education" />
+<input name="degree" type="text" class="lname" placeholder="Degree"  /> 
 <br><br><br>
-<button>Submit</button>
+<input type="submit" class="submit" value="Submit" />
+</form>
 </div>
 </body>
 </html>
