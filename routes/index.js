@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../lib/User');  // TODO remove when done changes
 var UserCredentials = require("../lib/UserCredentials"),
     UserProfile = require("../lib/UserProfile");
 
@@ -48,24 +47,6 @@ router.post('/register', function(req, res){
     var password = req.body.password;
     var email = req.body.email;
     
-    /*
-    //create a new user
-    var newuser = new User();
-    newuser.username = username;
-    newuser.password = password;
-    newuser.email = email;
-
-    //save the user
-    newuser.save(function(err, savedUser){
-        if(err){
-            console.log(err);
-            return res.status(500).send();
-        }else{
-            return res.status(200).send();
-        }
-    }); 
-    */
-
     // create a new user and add his credentials to the database
     var newUser = new UserCredentials();
     newUser.username = username;
@@ -78,7 +59,35 @@ router.post('/register', function(req, res){
             console.log(err);
             return res.status(500).send();
         } else {
+            req.session.user = savedUser;
             res.render("update-profile");
+            return res.status(200).send();
+        }
+    });
+});
+
+router.post("/update-profile", function(req, res) {
+    if (!req.session.user) {
+        return res.status(401).send();
+    } 
+    var username = req.session.user.username;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var specialty = req.body.specialty;  // TODO support multiple specialties
+    var description = req.body.description;
+
+    var newProfile = new UserProfile();
+    newProfile.username = username;
+    newProfile.firstname = firstname;
+    newProfile.lastname = lastname;
+    newProfile.specialties.push(specialty);
+    newProfile.description = description;
+
+    newProfile.save(function(err, savedProfile) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        } else {
             return res.status(200).send();
         }
     });
