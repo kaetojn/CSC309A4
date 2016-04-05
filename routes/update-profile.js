@@ -1,3 +1,5 @@
+// DO NOT USE THIS FILE. THIS FILE IS FUCKING SHIT.
+
 var express = require("express");
 var router = express.Router();
 var UserCredentials = require("../lib/UserCredentials"),

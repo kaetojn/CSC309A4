@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../lib/User');
+var User = require('../lib/User');  // TODO remove when done changes
+var UserCredentials = require("../lib/UserCredentials"),
+    UserProfile = require("../lib/UserProfile");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,7 +15,7 @@ router.post('/login', function(req, res){
     var username= req.body.username;
     var password = req.body.password;
     
-    User.findOne({username: username, password: password}, function(err, user){
+    UserProfile.findOne({username: username, password: password}, function(err, user){
        if(err){
            console.log(err);
            return res.status(500).send();
@@ -48,7 +50,8 @@ router.post('/register', function(req, res){
     var admin = req.body.admin;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
-    
+   
+    /*
     //create a new user
     var newuser = new User();
     newuser.username = username;
@@ -66,7 +69,25 @@ router.post('/register', function(req, res){
         }else{
             return res.status(200).send();
         }
-    });   
+    });   */
+
+    // create a new user and add his credentials to the database
+    var newUser = new UserCredentials();
+    newUser.username = username;
+    newUser.password = password;
+    newUser.email = email;
+    newUser.admin = admin;
+    
+    // save the user's credentials
+    newUser.save(function(err, savedUser) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        } else {
+            return res.status(200).send();
+            res.render("update-profile");
+        }
+    });
 });
 
 module.exports = router;
