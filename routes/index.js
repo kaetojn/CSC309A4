@@ -48,6 +48,7 @@ router.post('/register', function(req, res){
     var password = req.body.password;
     var email = req.body.email;
     
+    /*
     //create a new user
     var newuser = new User();
     newuser.username = username;
@@ -63,13 +64,13 @@ router.post('/register', function(req, res){
             return res.status(200).send();
         }
     }); 
+    */
 
     // create a new user and add his credentials to the database
     var newUser = new UserCredentials();
     newUser.username = username;
     newUser.password = password;
     newUser.email = email;
-    newUser.admin = admin;
     
     // save the user's credentials
     newUser.save(function(err, savedUser) {
@@ -77,8 +78,8 @@ router.post('/register', function(req, res){
             console.log(err);
             return res.status(500).send();
         } else {
-            return res.status(200).send();
             res.render("update-profile");
+            return res.status(200).send();
         }
     });
 });
