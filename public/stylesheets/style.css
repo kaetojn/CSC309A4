@@ -188,7 +188,8 @@ li {
 }
 form {
     padding: 0px;
-    margin: 0px
+    width:50%; 
+    margin:0 auto;
 }
 a img {
     border: none
