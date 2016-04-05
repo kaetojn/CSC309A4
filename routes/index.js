@@ -40,24 +40,18 @@ router.get('/logout', function(req, res){
     return res.status(200).send();
 });
 
-//GET to Sign Up
+//POST to Sign Up
 router.post('/register', function(req, res){    
     var username= req.body.username;
     var password = req.body.password;
     var email = req.body.email;
-    var admin = req.body.admin;
-    var firstname = req.body.firstname;
-    var lastname = req.body.lastname;
     
     //create a new user
     var newuser = new User();
     newuser.username = username;
     newuser.password = password;
     newuser.email = email;
-    newuser.admin = admin;
-    newuser.firstname = firstname;
-    newuser.lastname = lastname;
-    
+
     //save the user
     newuser.save(function(err, savedUser){
         if(err){
