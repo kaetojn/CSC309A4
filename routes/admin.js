@@ -6,17 +6,10 @@ var router = express.Router();
 /* GET admin page. */
 router.get('/', function(req, res, next) {
     res.render('admin', { title: 'admin page' });
-    //UserProfile.find({} , function(err, users) {
-    //if (err) throw err;
-      //console.log(users);
-      // instead of being shown on console need to call it when btn is pressed.
-  //});
 });
 
 // get all users
 router.get('/users', function(req, res){
-	//var search = req.body.search-user;
-	//console.log(search);
 	UserProfile.find({} , function(err, users) {
  		if (err) throw err;
   		res.json(users);
@@ -78,3 +71,4 @@ router.route('/deleteuser').delete(function(req, res) {
 });
 
 module.exports = router;
+

@@ -56,7 +56,7 @@ router.post('/register', function(req, res){
     newUser.password = password;
     newUser.email = email;
     
-    // save the user's credentialshow?
+    // save the user's credentials
     newUser.save(function(err, savedUser) {
         if (err) {
             console.log(err);
