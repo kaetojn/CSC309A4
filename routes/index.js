@@ -14,11 +14,12 @@ router.post('/login', function(req, res){
     var username= req.body.username;
     var password = req.body.password;
     
-    UserProfile.findOne({username: username, password: password}, function(err, user){
+    UserCredentials.findOne({username: username, password: password}, function(err, user){
        if(err){
            console.log(err);
            return res.status(500).send();
        }
+       console.log(user);
         if(!user){
             return res.status(404).send();
         }
@@ -32,7 +33,8 @@ router.get('/dashboard', function(req, res){
    if(!req.session.user){
        return res.status(401).send();
    }
-    return res.status(200).send("Welcome to Toronto Toronto Tutor");
+    return res.status(200);
+    res.render("profile");
 });
 
 //GET to Log out
@@ -53,7 +55,7 @@ router.post('/register', function(req, res){
     newUser.password = password;
     newUser.email = email;
     
-    // save the user's credentials
+    // save the user's credentialshow?
     newUser.save(function(err, savedUser) {
         if (err) {
             console.log(err);
@@ -69,7 +71,7 @@ router.post('/register', function(req, res){
 router.post("/update-profile", function(req, res) {
     if (!req.session.user) {
         return res.status(401).send();
-    } 
+    }
     var username = req.session.user.username;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
@@ -90,7 +92,7 @@ router.post("/update-profile", function(req, res) {
     newProfile.location = location;
     newProfile.education = education;
     newProfile.degree = degree;
-    
+
     console.log(newProfile);
 
     newProfile.save(function(err, savedProfile) {
@@ -99,6 +101,28 @@ router.post("/update-profile", function(req, res) {
             return res.status(500).send();
         } else {
             res.render("profile");
+            return res.status(200).send();
+        }
+    });
+});
+
+/* Searching in profile page. */
+router.post("/profile", function(req, res) {
+    if (!req.session.user) {
+        return res.status(401).send();
+    }
+
+    var search = req.body.search-user;
+
+    console.log(search);
+
+    // send search to search page
+    newUser.save(function(err, savedUser) {
+        if (err) {
+            console.log(err);
+            return res.status(500).send();
+        } else {
+            res.render("search");
             return res.status(200).send();
         }
     });
