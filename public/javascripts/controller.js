@@ -9,6 +9,7 @@ mainApp.controller('profileController', ['$scope', '$http', function($scope, $ht
          $scope.name = (user.firstname + " " + user.lastname).toUpperCase();
          $scope.description = user.description;
          $scope.age = user.age;
+         $scope.location = user.location;
       });
    });
 }]);
