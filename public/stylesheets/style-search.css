@@ -24,6 +24,7 @@ body{
 .container {
     margin-bottom: 50px;
     background-color: white;
+    height: 100%;
 }
 .textpoint{
     font-size: 25px;

@@ -4,6 +4,8 @@ var mainApp = angular.module("mainApp", []);
 mainApp.controller('profileController', ['$scope', '$http', function($scope, $http) {
    angular.element(document).ready(function () {
       $http.get('/UserProfile')
-      .then(function(response){
-         $scope.myWelcome = response.data;
-      });
+          .then(function (response) {
+             $scope.myWelcome = response.data;
+          });
+
+
