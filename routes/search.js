@@ -52,5 +52,4 @@ router.get('/mentorlist', function(req, res) {
 
 });
 
-
 module.exports = router;
