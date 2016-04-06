@@ -7,6 +7,7 @@ mainApp.controller('profileController', ['$scope', '$http', function($scope, $ht
       .then(function(response){
          var user = response.data;
          $scope.name = (user.firstname + " " + user.lastname).toUpperCase();
+         $scope.description = user.description;
       });
    });
 }]);
