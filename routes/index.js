@@ -24,6 +24,7 @@ router.post('/login', function(req, res){
             return res.status(404).send();
         }
         req.session.user = user;
+        res.redirect("/dashboard");
         return res.status(200).send();
     });
 });
@@ -33,8 +34,8 @@ router.get('/dashboard', function(req, res){
    if(!req.session.user){
        return res.status(401).send();
    }
-    return res.status(200);
     res.render("profile");
+    return res.status(200);
 });
 
 //GET to Log out
@@ -100,7 +101,7 @@ router.post("/update-profile", function(req, res) {
             console.log(err);
             return res.status(500).send();
         } else {
-            res.render("profile");
+            res.redirect("/dashboard");
             return res.status(200).send();
         }
     });
