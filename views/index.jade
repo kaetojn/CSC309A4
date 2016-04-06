@@ -25,12 +25,11 @@ doctype html
 <br><br><br><br><br><br><br>
 <div id="left">
 <h2>Existing Users</h2>
-<form action="/login" ng-app = "mainApp" ng-controller = "studentController">
+<form action="/login" method="post">
 
-<input type="text" ng-model = "student.firstName" placeholder="User Name" /> <br />
-<input type="password" ng-model = "student.lastName" placeholder="Password" /> <br />
-<input type="submit" class="submit" value="Log in" /><br><br>
-{{student.fullName()}} 
+<input type="text" placeholder="User Name" /> <br />
+<input type="password" placeholder="Password" /> <br />
+<input type="submit" class="submit" value="Log in" /><br><br> 
 </form>
 </div>
 <div id="right">
