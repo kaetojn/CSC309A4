@@ -60,7 +60,7 @@ router.post('/register', function(req, res){
             return res.status(500).send();
         } else {
             req.session.user = savedUser;
-            res.render("update-profile", { title: 'Toronto Tutor' });
+            res.render("update-profile");
             return res.status(200).send();
         }
     });
@@ -98,6 +98,7 @@ router.post("/update-profile", function(req, res) {
             console.log(err);
             return res.status(500).send();
         } else {
+            res.render("profile");
             return res.status(200).send();
         }
     });
