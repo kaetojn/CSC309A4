@@ -33,7 +33,8 @@ router.get('/dashboard', function(req, res){
    if(!req.session.user){
        return res.status(401).send();
    }
-    return res.status(200).send("Welcome to Toronto Toronto Tutor");
+    return res.status(200);
+    res.render("profile");
 });
 
 //GET to Log out
