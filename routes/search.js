@@ -11,13 +11,45 @@ router.get('/mentorlist', function(req, res) {
 
     console.log("Getting mentorlist from DB");
 
-    res.json(mentorlist);
-    UserProfile.find({username: 'c3mohamn'}, function(err, results){
-        if (err) throw err;
-        console.log(results);
-        res.json(results);
+    // test data
 
-    });
+    mentor1 = {
+        username: 'c3mohamn',
+        firstname: 'Nasir',
+        lastname: 'Mohammad',
+        specialties: 'Math',
+        description: 'I like turtles',
+        age: '22',
+        location: 'Toronto',
+        education: 'University of Toronto',
+        degree: 'Math'
+    }
+    mentor2 = {
+        username: 'c2mohamn',
+        firstname: 'Nasir',
+        lastname: 'Mohammad',
+        specialties: 'Math',
+        description: 'I like turtles',
+        age: '22',
+        location: 'Toronto',
+        education: 'University of Toronto',
+        degree: 'Math'
+    }
+    mentor3 = {
+        username: 'c1mohamn',
+        firstname: 'Nasir',
+        lastname: 'Mohammad',
+        specialties: 'Math',
+        description: 'I like turtles',
+        age: '22',
+        location: 'Toronto',
+        education: 'University of Toronto',
+        degree: 'Math'
+    }
+
+    var mentorlist = [mentor1, mentor2, mentor3];
+    res.json(mentorlist);
+
 });
 
 

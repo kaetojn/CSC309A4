@@ -86,7 +86,7 @@ body {
 .rating {
     unicode-bidi: bidi-override;
     direction: rt1;
-    margin-top: 2%
+    margin-top: 2%;
     width: 90%;
     color: #FFEC5B;
     outline: #000000;
