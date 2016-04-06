@@ -107,4 +107,13 @@ router.post("/update-profile", function(req, res) {
     });
 });
 
+router.get("/UserProfile/:userID", function(req, res) {
+    UserProfile.findById(req.params.userID, function(err, user) {
+        if (user) {
+            return res.status(200).send(user);
+        }
+    });
+    return res.status(200).send("Blah Blahson");
+});
+
 module.exports = router;
