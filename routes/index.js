@@ -93,6 +93,7 @@ router.post("/update-profile", function(req, res) {
     newProfile.location = location;
     newProfile.education = education;
     newProfile.degree = degree;
+    newProfile.reviews = [];
 
     console.log(newProfile);
 
