@@ -1,17 +1,24 @@
-var express = require("express");
-var router = express.Router();
-var UserCredentials = require("../lib/UserCredentials"),
-    UserProfile = require("../lib/UserProfile");
+/* TEMP FILE, WILL BE DELETED ONCE ADDED TO INDEX. */
 
-// Getting the search page
-router.get('/', function(req, res, next) {
-  res.render('search', { title: 'Search' });
-});
+// TODO: Add a search bar on the profile page
+
+// Search starts when a user enters something into a search bar.
+
+//POST to search
+router.post('/search', function(req, res){    
+    var search = req.body.search;
     
-    /*TODO:
-    -- display the search page.
-    -- allow searching for mentors using username | actual name and possibily specialist.
-    -- display the search results in a table
-    */
+    // find the user that matches search
+    // Atm will only be searching using username
+    UserProfile.findOne({username: search}, function(err, user){
+       if(err){
+           console.log(err);
+           return res.status(500).send();
+       }
+       if(!user){
+           return res.status(404).send();
+       }
+    });
+});
 
-module.exports = router;
+// Will redirect user to a new page, where mentors that match their results will be posted.
