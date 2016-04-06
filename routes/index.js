@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 
 //POST to log in
 router.post('/login', function(req, res){
-    var username= req.body.username;
-    var password = req.body.password;
-    
-    UserCredentials.findOne({username: username, password: password}, function(err, user){
+    var u = req.body.username;
+    var p = req.body.password;
+    console.log(req.body);
+    UserCredentials.findOne({username: u, password: p}, function(err, user){
        if(err){
            console.log(err);
            return res.status(500).send();
@@ -72,7 +72,7 @@ router.post('/register', function(req, res){
 router.post("/update-profile", function(req, res) {
     if (!req.session.user) {
         return res.status(401).send();
-    } 
+    }
     var username = req.session.user.username;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
@@ -93,7 +93,7 @@ router.post("/update-profile", function(req, res) {
     newProfile.location = location;
     newProfile.education = education;
     newProfile.degree = degree;
-    
+
     console.log(newProfile);
 
     newProfile.save(function(err, savedProfile) {

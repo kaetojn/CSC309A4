@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
 var mongoose = require('mongoose');
+
 mongoose.connect('mongodb://127.0.0.1:27017/test', function(err) { 
     if(err){
         return console.log(err);
@@ -17,6 +17,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/test', function(err) {
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var search = require('./routes/search');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/search', search);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,6 +45,11 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/profile',
+                                      failureRedirect: '/' }));
 
 // error handlers
 
