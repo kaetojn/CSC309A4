@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
 var mongoose = require('mongoose');
+
 mongoose.connect('mongodb://127.0.0.1:27017/test', function(err) { 
     if(err){
         return console.log(err);
@@ -49,6 +49,11 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/profile',
+                                      failureRedirect: '/' }));
 
 // error handlers
 

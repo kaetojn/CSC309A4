@@ -4,8 +4,10 @@ doctype html
 <title>Profile</title>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href="stylesheets/style-profile.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="http://use.edgefonts.net/josefin-sans:n1,n4:default.js" type="text/javascript"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="javascripts/controller.js"></script>
 </head>
 
 <body>
@@ -27,8 +29,8 @@ doctype html
 </div>
 </div> <br></br>
 
-<div id="ProfilePage">
-<h1>JOHN DOE</h1><br><br>
+<div id="ProfilePage" ng-app="mainApp" ng-controller="profileController" ng-init="user = {req.user}">
+<h1>{{name}}</h1><br><br>
 <button style="margin-left: 5px" type="button" class="btn btn-primary" onclick="alert('Hello world!')">
 Edit Profile
 </button>
@@ -37,23 +39,18 @@ Edit Profile
 <div class="rating"> <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> </div>
 </div><br><br>
 <div class="Info">
-<p> <strong>About</strong> <br><span>John Doe was a computer programmer by the age of 15. While a sophomore at Ryerson, he co-founded Breaker out of his dorm room. Breaker is now the world's largest Breaking network, making Doe a millionaire.</span></p>
+<p> <strong>About</strong> <br><span>{{description}}</span></p>
 </div>
 <div class="Info" align="center">
-<p> <strong>Age</strong> <span>30</span> </p>
-<p> <strong>Location</strong> <span>Toronto</span> </p>
-<p> <strong>Education</strong> <span>Ryerson University</span> </p>
-<p> <strong>Degree</strong> <span>Computer Science</span> </p>
+<p> <strong>Age</strong> <span>{{age}}</span> </p>
+<p> <strong>Location</strong> <span>{{location}}</span> </p>
+<p> <strong>Education</strong> <span>{{education}}</span> </p>
+<p> <strong>Degree</strong> <span>{{degree}}</span> </p>
 </div>
 
 <br><br><br>
 <div class="specialty"> <h1>Specialty/Expertise/Offers</h1>
-<ul>
-<li>Python</li>
-<li>Java</li>
-<li>Web Development</li>
-<li>Other stuff</li>
-</ul>
+{{specialties}}
 </div>
 <div class="reviews"> <h1>Reviews</h1> <br>
 <br>

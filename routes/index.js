@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 
 //POST to log in
 router.post('/login', function(req, res){
-    var username= req.body.username;
-    var password = req.body.password;
-    
-    UserCredentials.findOne({username: username, password: password}, function(err, user){
+    var u = req.body.username;
+    var p = req.body.password;
+    console.log(req.body);
+    UserCredentials.findOne({username: u, password: p}, function(err, user){
        if(err){
            console.log(err);
            return res.status(500).send();
@@ -24,6 +24,7 @@ router.post('/login', function(req, res){
             return res.status(404).send();
         }
         req.session.user = user;
+        res.redirect("/dashboard");
         return res.status(200).send();
     });
 });
@@ -33,8 +34,8 @@ router.get('/dashboard', function(req, res){
    if(!req.session.user){
        return res.status(401).send();
    }
-    return res.status(200);
     res.render("profile");
+    return res.status(200);
 });
 
 //GET to Log out
@@ -100,31 +101,21 @@ router.post("/update-profile", function(req, res) {
             console.log(err);
             return res.status(500).send();
         } else {
-            res.render("profile");
+            res.redirect("/dashboard");
             return res.status(200).send();
         }
     });
 });
 
-/* Searching in profile page. */
-router.post("/profile", function(req, res) {
-    if (!req.session.user) {
-        return res.status(401).send();
-    }
-
-    var search = req.body.search-user;
-
-    console.log(search);
-
-    // send search to search page
-    newUser.save(function(err, savedUser) {
+router.get("/UserProfile/", function(req, res) {
+    UserProfile.findOne({username: req.session.user.username}, 
+        function(err, user) {
         if (err) {
             console.log(err);
             return res.status(500).send();
-        } else {
-            res.render("search");
-            return res.status(200).send();
         }
+        res.send(user);
+        return res.status(200);
     });
 });
 

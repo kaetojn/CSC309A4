@@ -5,5 +5,14 @@ mainApp.controller('profileController', ['$scope', '$http', function($scope, $ht
    angular.element(document).ready(function () {
       $http.get('/UserProfile')
       .then(function(response){
-         $scope.myWelcome = response.data;
+         var user = response.data;
+         $scope.name = (user.firstname + " " + user.lastname).toUpperCase();
+         $scope.description = user.description;
+         $scope.age = user.age;
+         $scope.location = user.location;
+         $scope.education = user.education;
+         $scope.degree = user.degree;
+         $scope.specialties = user.specialties;
       });
+   });
+}]);
