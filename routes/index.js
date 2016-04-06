@@ -106,26 +106,4 @@ router.post("/update-profile", function(req, res) {
     });
 });
 
-/* Searching in profile page. */
-router.post("/profile", function(req, res) {
-    if (!req.session.user) {
-        return res.status(401).send();
-    }
-
-    var search = req.body.search-user;
-
-    console.log(search);
-
-    // send search to search page
-    newUser.save(function(err, savedUser) {
-        if (err) {
-            console.log(err);
-            return res.status(500).send();
-        } else {
-            res.render("search");
-            return res.status(200).send();
-        }
-    });
-});
-
 module.exports = router;

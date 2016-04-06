@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
 var mongoose = require('mongoose');
+
 mongoose.connect('mongodb://127.0.0.1:27017/test', function(err) { 
     if(err){
         return console.log(err);
