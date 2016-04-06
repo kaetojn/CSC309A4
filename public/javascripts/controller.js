@@ -3,9 +3,10 @@ var mainApp = angular.module("mainApp", []);
          
 mainApp.controller('profileController', ['$scope', '$http', function($scope, $http) {
    angular.element(document).ready(function () {
-      $http.get('/UserProfile/' + $scope.user._id)
+      $http.get('/UserProfile')
       .then(function(response){
-         $scope.name = response.firstname;
+         var user = response.data;
+         $scope.name = (user.firstname + " " + user.lastname).toUpperCase();
       });
    });
 }]);
