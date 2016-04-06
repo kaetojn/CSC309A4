@@ -14,11 +14,12 @@ router.post('/login', function(req, res){
     var username= req.body.username;
     var password = req.body.password;
     
-    UserProfile.findOne({username: username, password: password}, function(err, user){
+    UserCredentials.findOne({username: username, password: password}, function(err, user){
        if(err){
            console.log(err);
            return res.status(500).send();
        }
+       console.log(user);
         if(!user){
             return res.status(404).send();
         }
