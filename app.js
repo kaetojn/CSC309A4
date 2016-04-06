@@ -40,6 +40,11 @@ app.use('/users', users);
 app.use('/search', search);
 app.use('/admin', admin);
 
+//admin side
+app.use('/admin', admin);
+app.use('/admin/users', admin);
+app.use('/admin/searchuser', admin);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
