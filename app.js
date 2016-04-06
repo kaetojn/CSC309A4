@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+var passport = require("passport");
 
 mongoose.connect('mongodb://127.0.0.1:27017/test', function(err) { 
     if(err){
@@ -37,11 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/search', search);
-
-//admin side
 app.use('/admin', admin);
-app.use('/admin/users', admin);
-app.use('/admin/searchuser', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
