@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 
 //POST to log in
 router.post('/login', function(req, res){
-    var username= req.body.username;
-    var password = req.body.password;
-    
-    UserCredentials.findOne({username: username, password: password}, function(err, user){
+    var u = req.body.username;
+    var p = req.body.password;
+    console.log(req.body);
+    UserCredentials.findOne({username: u, password: p}, function(err, user){
        if(err){
            console.log(err);
            return res.status(500).send();
