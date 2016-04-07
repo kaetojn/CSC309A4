@@ -75,7 +75,7 @@ router.post('/register', function(req, res){
     newUser.save(function(err, savedUser) {
         if (err) {
             console.log(err);
-            return res.status(500).send();
+            return res.status(500).send("User Already Exsits");
         } else {
             req.session.user = savedUser;
             res.render("update-profile");
@@ -115,7 +115,7 @@ router.post("/update-profile", function(req, res) {
     newProfile.save(function(err, savedProfile) {
         if (err) {
             console.log(err);
-            return res.status(500).send();
+            return res.status(500).send("Please Go Back and Complete all Fields. Every field is required.");
         } else {
             res.redirect("/dashboard");
             return res.status(200).send();

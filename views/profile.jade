@@ -38,11 +38,11 @@ Edit Profile
 </button>
 <div class="column-left">
 <div id="Photo"><img src="http://lacrosseattire.com/wp-content/uploads/2016/01/John_Doe.jpg"> </div>
-<div class="rating"> <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> </div>
+<div class="rating"></div>
 </div><br><br>
-<div class="Info">
-<p> <strong>About</strong> <br><span>{{description}}</span></p>
-</div>
+<div class="Info" align="center">
+<p> <strong>About</strong> <br><br><span>{{description}}</span></p>
+</div><br><br>
 <div class="Info" align="center">
 <p> <strong>Age</strong> <span>{{age}}</span> </p>
 <p> <strong>Location</strong> <span>{{location}}</span> </p>
@@ -67,6 +67,7 @@ Score: <select name="stars">
 <option value="5">5</option>
 </select>
 /5
+<br>
 <textarea name="body" placeholder="Write your review here"></textarea>
 <input type="submit" value="Submit review" />
 </form>
