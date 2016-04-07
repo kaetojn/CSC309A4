@@ -135,10 +135,9 @@ router.get("/UserProfile/", function(req, res) {
     });
 });
 
-<<<<<<< HEAD
 router.get("/SearchResults/", function(req, res) {
     UserProfile.find({},
-        function(err, result) {
+        function (err, result) {
             if (err) {
                 console.log(err);
                 return res.status(500).send();
@@ -146,7 +145,8 @@ router.get("/SearchResults/", function(req, res) {
             res.send(result);
             return res.status(200);
         });
-=======
+});
+
 router.post("/leave-review", function(req, res) {
     var rusername = req.session.user.username;
     var rscore = req.body.stars;
@@ -165,7 +165,6 @@ router.post("/leave-review", function(req, res) {
         return res.status(200).send();
 
     });
->>>>>>> 0e0b259c6f11bbf0fb1ce632c3901a284fa4bf4b
 });
 
 module.exports = router;
