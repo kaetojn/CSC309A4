@@ -89,6 +89,7 @@ router.post("/update-profile", function(req, res) {
         return res.status(401).send();
     }
     var username = req.session.user.username;
+    var email = req.session.user.email;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
     var specialty = req.body.specialty;  // TODO support multiple specialties
@@ -100,6 +101,7 @@ router.post("/update-profile", function(req, res) {
 
     var newProfile = new UserProfile();
     newProfile.username = username;
+    newProfile.email = email;
     newProfile.firstname = firstname;
     newProfile.lastname = lastname;
     newProfile.specialties = specialty;

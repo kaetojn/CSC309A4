@@ -31,6 +31,7 @@ html
             table(class='table table-striped')
                 thead
                     tr
+                        th Email
                         th Name
                         th Location
                         th Education
@@ -38,6 +39,7 @@ html
 
                 tbody
                     tr(ng-repeat="result in results")
+                        td {{result.email}}
                         td {{result.firstname + " " + result.lastname}}
                         td {{result.location}}
                         td {{result.education}}
