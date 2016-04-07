@@ -119,4 +119,16 @@ router.get("/UserProfile/", function(req, res) {
     });
 });
 
+router.get("/SearchResults/", function(req, res) {
+    UserProfile.find({},
+        function(err, result) {
+            if (err) {
+                console.log(err);
+                return res.status(500).send();
+            }
+            res.send(result);
+            return res.status(200);
+        });
+});
+
 module.exports = router;
