@@ -30,8 +30,7 @@ doctype html
 
 <div id="ProfilePage" ng-app="mainApp" ng-controller="profileController" ng-init="user = {req.user}">
 <h1>{{name}}</h1><br><br>
-<button style="margin-left: 5px" type="button" class="btn btn-primary" onclick="alert('Hello world!')">
-Edit Profile
+<button style="margin-left: 5px" type="button" class="btn btn-primary" onclick="alert('Hello world!')">Edit Profile
 </button>
 <div class="column-left">
 <div id="Photo"><img src="http://lacrosseattire.com/wp-content/uploads/2016/01/John_Doe.jpg"> </div>
@@ -55,8 +54,7 @@ Edit Profile
 </div>
 
 <div class="reviews"> <!-- Terrible choice of name, I know, but no time left, so reusing the other style. -->
-<form action="/leave-review" method="post">
-Score: <select name="stars">
+<form action="/leave-review" method="post">Score: <select name="stars">
 <option value="1">1</option>
 <option value="2">2</option>
 <option value="3">3</option>
@@ -74,9 +72,7 @@ Score: <select name="stars">
 <div id="contact_us">
 <a target="_blank" href=#>Contact Us</a>
 </div>
-<p>
-Toronto Tutor @ 2016. All rights reserved.
-</p>
+p Toronto Tutor @ 2016. All rights reserved.
 </footer>
 </body>
 </html>
