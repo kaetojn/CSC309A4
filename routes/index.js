@@ -120,4 +120,24 @@ router.get("/UserProfile/", function(req, res) {
     });
 });
 
+router.post("/leave-review", function(req, res) {
+    var rusername = req.session.user.username;
+    var rscore = req.body.stars;
+    var rbody = req.body.body;
+
+    var review = {username: rusername, stars: rscore, body: rbody};
+    
+    UserProfile.update({username: rusername}, {$push: {reviews: review}},
+        function(err) {
+        if (err) {
+            console.log(err);
+            res.redirect("/dashboard");
+            return res.status(500).send();
+        }
+        res.redirect("/dashboard");
+        return res.status(200).send();
+
+    });
+});
+
 module.exports = router;
