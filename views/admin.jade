@@ -18,16 +18,15 @@ doctype html
 </form>
 <hr>
 
-<form action="/admin/searchusers" method="get">
+<form action="/admin/searchuser/:id" method="get">
 <input id="test" name="username" type="text" placeholder=" insert username" />
 <input id="showallbtn" type="submit" class="submit" value="Search User" /><br>
 </form>
-<p></p><br>
 <hr>
 
 <form action="/admin/users" method="post">
 <input name="username" type="text" placeholder=" username"/><br/>
-<input name="password" type="password" placeholder="New Password"/><br/>
+<input name="password" type="password" placeholder="Password"/><br/>
 <input name="email" type="text" placeholder="email"/>
 <input type="submit" class="submit" value="Create User"/><br>
 </form>
@@ -37,7 +36,13 @@ doctype html
 <input name="username" type="text" placeholder=" username"/><br/>
 <input type="submit" class="submit" value="Delete User"/><br>
 </form>
+<hr>
 
+<form action="/admin/update2" method="put">
+<input name="username" type="text" placeholder=" username"/><br/>
+<input name="password" type="password" placeholder="New Password"/><br/>
+<input type="submit" class="submit" value="Change Password"/><br>
+</form>
 
 
 </div></div>

@@ -8,7 +8,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require("passport");
 
-mongoose.connect('mongodb://localhost:27017/test', function(err) { 
+mongoose.connect('mongodb://127.0.0.1:27017/test', function(err) { 
     if(err){
         return console.log(err);
     }
@@ -38,14 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/search', search);
-app.use('/admin', admin);
 
 //admin side
 app.use('/admin', admin);
-app.use('/admin/users', admin);
-app.use('/admin/searchuser', admin);
-app.use('/admin/createuser', admin);
+app.use('/admin/searchuser/:id', admin);
 app.use('/admin/deleteuser', admin);
+app.use('/admin/update2', admin);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
