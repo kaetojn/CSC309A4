@@ -9,19 +9,32 @@ router.get('/', function(req, res, next) {
 });
 
 // get all users
+/*
 router.get('/users', function(req, res){
 	UserProfile.find({} , function(err, users) {
  		if (err) throw err;
   		res.json(users);
 	});
 });
+*/
+
+// search 1 user
+router.get('/searchuser', function(req, res){
+  UserCredentials.findOne({_id: req.params.id}, function(err, user){
+    if (err) {
+      return res.send(err);
+    }
+    console.log(user);
+    res.json(user);
+    });
+});
 
 //update user's password
-router.post('/:id', function(req, res){
+router.put('/update/:id', function(req, res){
     var _username= req.body.username;
     var new_password = req.body.password;
 
-    UserCredentials.findOneAndUpdate({ username: _username}, {password: new_password},function(err, user) {
+    UserProfile.findOneAndUpdate({ username: _username}, {password: new_password},function(err, user) {
   		if (err) throw err;
 
   		// we have the updated user returned to us
@@ -29,36 +42,24 @@ router.post('/:id', function(req, res){
 	});
 });
 
-// search 1 user
-router.get('/searchuser', function(req, res){
-  //var _username= req.body.username;
-    var id = req.params._id;
-    console.log(id);
-    return res.send(id);
-  UserProfile.find({_id: req.params.id}, function(err, user){
-    if (err) {
-      return res.send(err);
-    }
-
-      res.json(user);
-    });
-});
-
 //create user
-router.route('/createuser').post(function(req, res) {
-  var newuser = new UserCredentials(req.body);
+/*
+router.post('/createuser', function(req, res) {
+  var newuser = new UserProfile(req.body);
 
   newuser.save(function(err) {
     if (err) {
       return res.send(err);
     }
-    res.send({ message: 'New User Created'});
+    console.log("new user created");
+    //res.send({ message: 'New User Created'});
   });
 });
+*/
 
 //delete user
-router.route('/deleteuser').delete(function(req, res) {
-  UserCredentials.remove({
+router.route('/deleteuser/:id').delete(function(req, res) {
+  UserProfile.remove({
   	//id or username
     _id: req.params.id
   }, function(err, user) {
@@ -69,6 +70,45 @@ router.route('/deleteuser').delete(function(req, res) {
     res.json({ message: 'Successfully deleted' });
   });
 });
+
+
+
+
+
+
+
+
+router.route('/users')
+  .get(function(req, res) {
+    UserCredentials.find(function(err, users) {
+      if (err) {
+        return res.send(err);
+      }
+
+      res.json(users);
+    });
+  })
+  .post(function(req, res) {
+    var user = new UserCredentials(req.body);
+
+ //   user.username = req.body.username;
+//    user.password = req.body.password;
+ //   user.em
+
+    console.log(req.body);
+    user.save(function(err) {
+      if (err) {
+        return res.send(err);
+      }
+
+      res.send({ message: 'Movie Added' });
+    });
+  });
+
+
+
+
+
 
 module.exports = router;
 
