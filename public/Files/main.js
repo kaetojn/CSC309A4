@@ -10,8 +10,7 @@ $(document).ready(function() {
 
     // just to get my site out quick use masonry
     // going to rewrite this myself.
-
-    // Also need to ditch masonry for iphone and write a scollable content viewer.
+    
     $('#workPreview').masonry({
         itemSelector : '.workItem',
         isResizable: true,

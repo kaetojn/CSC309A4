@@ -58,7 +58,7 @@ router.put('/update', function(req, res){
       if (err) {
         return res.send(err);
       }
-      res.json({ message: 'Movie updated!' });
+      res.json({ message: 'User updated!' });
     });
   });
 });

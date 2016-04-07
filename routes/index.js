@@ -35,8 +35,6 @@ router.post('/login', function(req, res){
                 res.redirect("/dashboard");
                 return res.status(200).send();
             }
-            console.log(user);
-            console.log("asdasdasd");
             res.redirect("/admin");
             return res.status(200).send();
             
@@ -99,6 +97,7 @@ router.post("/update-profile", function(req, res) {
     var education = req.body.education;
     var degree = req.body.degree;
 
+    // create a new profil and add his data to the database
     var newProfile = new UserProfile();
     newProfile.username = username;
     newProfile.email = email;
