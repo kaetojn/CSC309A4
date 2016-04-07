@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var UserCredentials = require("../lib/UserCredentials");
 var UserProfile = require("../lib/UserProfile");
+var AdminUser = require("../lib/AdminUser");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,17 +16,31 @@ router.post('/login', function(req, res){
     var p = req.body.password;
     console.log(req.body);
     UserCredentials.findOne({username: u, password: p}, function(err, user){
-       if(err){
+        if(err){
            console.log(err);
            return res.status(500).send();
-       }
-       console.log(user);
+        }
+        //console.log(user);
         if(!user){
             return res.status(404).send();
         }
-        req.session.user = user;
-        res.redirect("/dashboard");
-        return res.status(200).send();
+        //  NOT TESTED YET, REDIRECTION TO ADMIN PAGE
+        AdminUser.findOne({username: u}, function(err, result){
+            if(err){
+                console.log(err);
+                return res.status(500).send();
+            }
+            if(!result){
+                req.session.user = user;
+                res.redirect("/dashboard");
+                return res.status(200).send();
+            }
+            console.log(user);
+            console.log("asdasdasd");
+            res.redirect("/admin");
+            return res.status(200).send();
+            
+        });    
     });
 });
 
